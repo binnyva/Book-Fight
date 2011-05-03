@@ -1,0 +1,35 @@
+/****************** Tabby ************/
+.tab-content {
+	display:none;
+	
+	padding:5px;
+	border-bottom:1px solid #000;
+	border-left:1px solid #000;
+	border-right:1px solid #000;
+}
+.tabs {
+	width:100%;
+	margin:0;
+	padding:0;
+	border-bottom:1px solid #000;
+	height:30px;
+}
+.tabs li {
+	margin:0 5px 0 0;
+	padding-left:3px;
+	height:29px;
+	line-height:29px;
+	border:1px solid #000;
+	list-style: none;
+	display: block;
+	float:left;
+	width:100px;
+}
+.tabs li.tab-selected {
+	border-bottom:1px solid #fff;
+}
+.tabs li.here {
+	border-bottom: 1px solid #ffc;
+	list-style: none;
+	display: inline;
+}
