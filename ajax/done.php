@@ -3,7 +3,7 @@ require("../common.php");
 
 if(empty($_GET['item_id']) or !is_numeric($_GET['item_id'])) showMessage("Item ID Missing/Incorrect", $config['site_url'] . 'index.php', 'error');
 
-if(empty($_GET['status'])) $status = 1;
+if(!isset($_GET['status'])) $status = 1;
 else $status = ($_GET['status']) ? 1 : 0;
 $statuses = array('Unread','Read');
 

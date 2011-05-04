@@ -1,6 +1,6 @@
 <h1>Login</h1>
 
-<form action="login.php" method="post" class="form-area">
+<form action="<?php echo $config['site_url'] ?>user/login.php" method="post" class="form-area">
 <label for="username">User name</label>
 <input type="text" name="username" id="username" value="<?=isset($PARAM['username']) ? $PARAM['username']:''?>" /><br />
 
@@ -13,4 +13,4 @@
 <input type="submit" name="action" value="Login" />
 </form><br />
 
-<a href="signup.php">Sign up</a> | <a href="forgot_password.php">Forgot Password?</a>
+<a href="<?php echo $config['site_url'] ?>user/signup.php">Sign up</a> | <a href="<?php echo $config['site_url'] ?>user/forgot_password.php">Forgot Password?</a>

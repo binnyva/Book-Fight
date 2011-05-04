@@ -39,7 +39,7 @@ include($GLOBALS['template']->template);
 <!-- End Content -->
 </div>
 <br />
-<div id="footer">An <a href="http://www.bin-co.com/php/scripts/iframe/">iFrame</a> Application</div>
+<div id="footer"></div>
 
 <script src="<?=$abs?>js/library/jquery.min.js" type="text/javascript"></script>
 <script src="<?=$abs?>js/application.js" type="text/javascript"></script>

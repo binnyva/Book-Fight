@@ -1,8 +1,8 @@
 function init() {
-	$(".read").click(markAsRead);
-	$(".item-row").click(function() {
+	$(".item-row").click(function(e) {
 		var checkbox = $(this).find("input.read");
-		checkbox.attr('checked', !checkbox.attr('checked')); // Toggles the checkbox
+		if(e.target.className != "read") // If the user clicked on the checkbox directly, don't toggle. If they clicked on the row, toggle the checkbox
+			checkbox.attr('checked', !checkbox.attr('checked')); // Toggles the checkbox
 		markAsRead.apply(checkbox[0]);
 	});
 	
