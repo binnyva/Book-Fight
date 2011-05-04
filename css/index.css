@@ -6,3 +6,6 @@
 	color:#999;
 	font-style:italic;
 }
+.item-row:hover {
+	background-color:#666;
+}
