@@ -1,4 +1,4 @@
-<h1>BBC Top 100 List</h1>
+<h1><?php echo $list_details['name'] ?></h1>
 
 <ul class="tabs">
 <li class="tab-selected"><a href="#all" id="show-all" class="with-icon all-books">All(100)</a></li>
@@ -11,10 +11,12 @@
 $count = 0;
 foreach($items as $item) { 
 	$count++;
+	$read = false;
+	if(!empty($user_read[$item['id']])) $read = true;
 ?>
 <tr class="<?php echo ($count % 2) ? 'odd' : 'even'?> item-row">
 <td class="count"><?php echo $count ?></td>
-<td><span class="title"><?php echo $item['name'] ?></span><br />
+<td><span class="title <?php if($read) echo 'read'; ?>"><?php echo $item['name']; ?></span><br />
 <span class="author"><?php echo $item['author'] ?></span></td>
 
 <td><span class="details"></span></td>

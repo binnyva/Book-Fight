@@ -13,8 +13,8 @@
 	echo '<a href="'.$config['site_url'].'user/profile.php">' . $_SESSION['user_name'] . '</a> | ';
 	echo '<a href="'.$config['site_url'].'user/logout.php">Logout</a>';
 } else { ?>
-<a href="<?php echo $config['site_url'] ?>/user/login.php">Login</a> | 
-<a href="<?php echo $config['site_url'] ?>/user/signup.php">Signup</a>
+<a href="<?php echo $config['site_url'] ?>user/login.php">Login</a> | 
+<a href="<?php echo $config['site_url'] ?>user/signup.php">Signup</a>
 <?php } ?>
 </div>
 
@@ -37,6 +37,14 @@ include($GLOBALS['template']->template);
 /////////////////////////////////// The Template file will appear here ////////////////////////////
 ?>
 <!-- End Content -->
+</div>
+<div id="sidebar">
+<h3>Top Readers</h3>
+<ul>
+<?php foreach($top_users as $user) { ?>
+<li><a href="<?php echo $config['site_url'] ?>reader/<?php echo $user['username'] ?>"><?php echo "$user[name]($user[read_count])"; ?></a></li>
+<?php } ?>
+</ul>
 </div>
 <br />
 <div id="footer"></div>

@@ -8,8 +8,10 @@ else $status = ($_GET['status']) ? 1 : 0;
 $statuses = array('Unread','Read');
 
 $sql->execQuery("DELETE FROM UserItem WHERE user_id={$_SESSION['user_id']} AND item_id={$_GET['item_id']}");
-$result = $sql->execQuery("INSERT INTO UserItem(user_id,item_id,status,done_on) 
-	VALUES('{$_SESSION['user_id']}', '{$_GET['item_id']}', '$status', NOW())");
+if($status) {
+	$result = $sql->execQuery("INSERT INTO UserItem(user_id,item_id,status,done_on) 
+		VALUES('{$_SESSION['user_id']}', '{$_GET['item_id']}', '$status', NOW())");
+}
 
 if($result) {
 	showMessage("Book marked as {$statuses[$status]} successfully");

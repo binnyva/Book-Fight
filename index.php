@@ -3,6 +3,8 @@ require("./common.php");
 
 $list_id = 1;
 
+$list_details = $sql->getAssoc("SELECT name, description FROM List WHERE id=$list_id");
+
 $items = $sql->getAll("SELECT Item.id,Item.name,Item.author 
 	FROM Item INNER JOIN ListItem ON ListItem.item_id=Item.id 
 	WHERE ListItem.list_id=$list_id ORDER BY ListItem.sort_order");
