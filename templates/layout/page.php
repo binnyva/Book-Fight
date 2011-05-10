@@ -1,9 +1,9 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html><head>
-<title><?=$title?></title>
-<link href="<?=$abs?>css/style.css" rel="stylesheet" type="text/css" />
-<link href="<?=$abs?>images/silk_theme.css" rel="stylesheet" type="text/css" />
-<?=$css_includes?>
+<title><?php echo $title?></title>
+<link href="<?php echo $abs?>css/style.css" rel="stylesheet" type="text/css" />
+<link href="<?php echo $abs?>images/silk_theme.css" rel="stylesheet" type="text/css" />
+<?php echo $css_includes?>
 </head>
 <body>
 <div id="loading">loading...</div>
@@ -18,7 +18,7 @@
 <?php } ?>
 </div>
 
-<h1 id="logo"><a href="<?=$abs?>"><?=$title?></a></h1>
+<h1 id="logo"><a href="<?php echo $abs ?>"><?php echo $title ?></a></h1>
 </div>
 
 <div id="content">
@@ -39,12 +39,14 @@ include($GLOBALS['template']->template);
 <!-- End Content -->
 </div>
 <div id="sidebar">
+<?php if(!empty($_SESSION['user_id'])) { ?>
 <h3>Top Readers</h3>
 <ul>
 <?php foreach($top_users as $user) { ?>
 <li><a href="<?php echo $config['site_url'] ?>reader/<?php echo $user['username'] ?>"><?php echo "$user[name]($user[read_count])"; ?></a></li>
 <?php } ?>
 </ul>
+<?php } ?>
 </div>
 <br />
 <div id="footer"></div>

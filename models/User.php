@@ -42,7 +42,7 @@ class User extends DBTable {
 		
 		$user_details = $sql->getAssoc("SELECT id,name FROM User WHERE username='$username' AND password='$password'");
 		if(!$user_details) { //Query did not run correctly
-			showMessage("Invalid Username/Password", "login.php", "error");
+			showMessage("Invalid Username/Password", "user/login.php", "error");
 
 		} else {
 			//Store the necessy stuff in the sesson
