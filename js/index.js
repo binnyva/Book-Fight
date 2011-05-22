@@ -39,6 +39,9 @@ function markAsRead() {
 	var status = this.checked ? 1 : 0;
 	var item_id = getId(this.id);
 	
+	if(status) $("#item-"+item_id+" .title").addClass("read");
+	else $("#item-"+item_id+" .title").removeClass("read")
+	
 	loading();
 	$.ajax({
 		"url": "ajax/done.php?ajax=1&item_id="+item_id+"&status="+status,

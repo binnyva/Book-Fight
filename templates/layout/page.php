@@ -51,8 +51,8 @@ include($GLOBALS['template']->template);
 <br />
 <div id="footer"></div>
 
-<script src="<?=$abs?>js/library/jquery.min.js" type="text/javascript"></script>
-<script src="<?=$abs?>js/application.js" type="text/javascript"></script>
-<?=$js_includes?>
+<script src="<?php echo $abs?>js/library/jquery.min.js" type="text/javascript"></script>
+<script src="<?php echo $abs?>js/application.js" type="text/javascript"></script>
+<?php echo $js_includes?>
 </body>
 </html>

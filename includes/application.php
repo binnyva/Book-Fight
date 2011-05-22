@@ -1,6 +1,8 @@
 <?php
-require_once(joinPath($config['site_folder'] , 'models/User.php'));
-$user = new User;
+set_include_path(get_include_path() . PATH_SEPARATOR . joinPath($config['site_folder'] , 'models'));
+$item = new Item;
+$list = new Lists;
+if(isset($_SERVER["HTTP_HOST"])) $user = new User;
 
 function checkUser() {
 	global $config;
@@ -9,11 +11,12 @@ function checkUser() {
 		showMessage("Please login to use this feature", $config['site_url'] . 'user/login.php', "error");
 }
 
+if(isset($_SERVER["HTTP_HOST"])) {
 if( $config['current_page'] != '/user/login.php' and 
 	$config['current_page'] != '/user/signup.php' and
 	$config['current_page'] != '/user/forgot_password.php') {
 		checkUser();
-}
+}}
 
 $list_id = 1;
 $top_users = $sql->getAll("SELECT COUNT(UserItem.id) as read_count, User.name, User.username 

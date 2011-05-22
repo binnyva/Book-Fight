@@ -10,18 +10,10 @@ if(!$user_details) {
 }
 
 $list_id = 1;
-$list_details = $sql->getAssoc("SELECT name, description FROM List WHERE id=$list_id");
-
-$items = $sql->getAll("SELECT Item.id,Item.name,Item.author 
-	FROM Item INNER JOIN ListItem ON ListItem.item_id=Item.id 
-	WHERE ListItem.list_id=$list_id ORDER BY ListItem.sort_order");
-	
-$user_read = $sql->getById("SELECT UserItem.item_id, UserItem.status, UserItem.rating
-	FROM ListItem INNER JOIN UserItem ON ListItem.item_id=UserItem.item_id 
-	WHERE ListItem.list_id=$list_id AND UserItem.user_id={$user_details['id']} AND status='1'");
-
+$list_details = $list->get_list($list_id);
+$items = $item->get_books_in_list($list_id);
+$user_read = $item->get_user_read_books_in_list($user_details['id'], $list_id);
 
 $template->addResource('tabby.css');
-$template->addResource('index.css');
-$template->addResource('index.js');
-render();
+$template->addResource('reader/index.css');
+render('index.php');
