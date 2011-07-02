@@ -5,7 +5,7 @@ class Item extends DBTable {
 	}
 	
 	function get_books_in_list($list_id) {
-		return $GLOBALS['sql']->getAll("SELECT Item.id,Item.name,Item.image,Item.asin,Item.url,Author.name AS author
+		return $GLOBALS['sql']->getById("SELECT Item.id,Item.name,Item.image,Item.asin,Item.url,Author.name AS author
 					FROM Item INNER JOIN ListItem ON ListItem.item_id=Item.id 
 					INNER JOIN Author ON Author.id=Item.author_id
 					WHERE ListItem.list_id=$list_id ORDER BY ListItem.sort_order");

@@ -1,8 +1,8 @@
 <?php
 require('../common.php');
 
-$user = $sql->escape($_GET['user']);
-$user_details = $sql->getAssoc("SELECT id,name,url,display_picture,bio FROM User WHERE username LIKE '$user'");
+$user_string = $sql->escape($_GET['user']);
+$user_details = $sql->getAssoc("SELECT id,name,url,display_picture,bio FROM User WHERE username LIKE '$user_string'");
 
 if(!$user_details) {
 	render('reader/no_such_user.php');

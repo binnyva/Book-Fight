@@ -26,7 +26,7 @@
 	if(isset($PARAM['error'])) print strip_tags($PARAM['error']); //It comes from the URL
 	else print $QUERY['error']; //Its set in the code(validation error or something.
 ?></div>
-<div id="success-message" <?=($QUERY['success']) ? '':'style="display:none;"';?>><?php echo strip_tags(stripslashes($QUERY['success']))?></div>
+<div id="success-message" <?php echo ($QUERY['success']) ? '':'style="display:none;"';?>><?php echo strip_tags(stripslashes($QUERY['success']))?></div>
 
 <!-- Begin Content -->
 <?php 
@@ -43,13 +43,17 @@ include($GLOBALS['template']->template);
 <h3>Top Readers</h3>
 <ul>
 <?php foreach($top_users as $user) { ?>
-<li><a href="<?php echo $config['site_url'] ?>reader/<?php echo $user['username'] ?>"><?php echo "$user[name]($user[read_count])"; ?></a></li>
+<li><a href="<?php echo $config['site_url'] ?>reader/<?php echo $user['username'] ?>"><?php echo "$user[name]($user[read_count])"; ?></a><?php 
+	if($_SESSION['user_username'] != $user['username']) { ?> - 
+	<a href="<?php echo $config['site_url'] ?>compare/<?php echo $_SESSION['user_username'] .'/'. $user['username'] ?>/">Compare</a></li><?php } ?>
 <?php } ?>
 </ul>
 <?php } ?>
 </div>
 <br />
 <div id="footer"></div>
+
+<div id="cover_preview"></div>
 
 <script src="<?php echo $abs?>js/library/jquery.min.js" type="text/javascript"></script>
 <script src="<?php echo $abs?>js/application.js" type="text/javascript"></script>

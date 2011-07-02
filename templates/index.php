@@ -23,9 +23,6 @@ foreach($items as $item) {
 <td><span class="details"></span></td>
 <td><span class="action"><input type="checkbox" name="item[<?php echo $item['id'] ?>]" id="item-<?php echo $item['id'] ?>" class="read" <?php if($read) echo 'checked="checked"'; ?> /></span>
 </td>
-
-</td>
-
 </tr>
 <?php } ?>
 </table>

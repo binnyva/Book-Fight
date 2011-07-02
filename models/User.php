@@ -12,8 +12,8 @@ class User extends DBTable {
 		$this->cookie_expire = time() + (60*60*24*30);//Will expire in 30 days
 		parent::__construct("User");
 		
-		if(isset($_SESSION['user_id']) and isset($_SESSION['user_name'])) {
-			$this->setCurrentUser($_SESSION['user_id'], $_SESSION['user_name']);
+		if(isset($_SESSION['user_id']) and isset($_SESSION['user_name']) and isset($_SESSION['user_username'])) {
+			$this->setCurrentUser($_SESSION['user_id'], $_SESSION['user_username'], $_SESSION['user_name']);
 			return; //User logged in already.
 		}
 		
@@ -40,13 +40,13 @@ class User extends DBTable {
 		global $sql;
 		$this->id = -1;
 		
-		$user_details = $sql->getAssoc("SELECT id,name FROM User WHERE username='$username' AND password='$password'");
+		$user_details = $sql->getAssoc("SELECT id,username,name FROM User WHERE username='$username' AND password='$password'");
 		if(!$user_details) { //Query did not run correctly
 			showMessage("Invalid Username/Password", "user/login.php", "error");
 
 		} else {
-			//Store the necessy stuff in the sesson
-			$this->setCurrentUser($user_details['id'],$username,$user_details['name']);
+			//Store the necessy stuff in the session
+			$this->setCurrentUser($user_details['id'],$user_details['username'],$user_details['name']);
 
 			//Keep some token in the cookie so as to login the user automatically the next time
 			if($remember) {
@@ -64,6 +64,8 @@ class User extends DBTable {
 	function logout() {
 		$_SESSION['user_id'] = '';
 		unset($_SESSION['user_id']);
+		unset($_SESSION['user_name']);
+		unset($_SESSION['user_username']);
 		
 		//Remove the remember me cookies as well.
 		if(isset($_COOKIE['username']) or isset($_COOKIE['password_hash'])) {
@@ -80,7 +82,8 @@ class User extends DBTable {
 	function setCurrentUser($user_id, $username = '', $real_name = '') {
 		if($user_id > 0) {
 			$_SESSION['user_id'] = $this->id = $user_id;
-			$_SESSION['user_name'] = ($real_name) ? $real_name : $username ;
+			$_SESSION['user_name'] = ($real_name) ? $real_name : $username;
+			$_SESSION['user_username'] = $username;
 		}
 	}
 	
@@ -150,6 +153,11 @@ class User extends DBTable {
 	function getDetails($id = 0) {
 		$id = ($id) ? $id : $this->id; 
 		return $this->find($id);
+	}
+	
+	/// Returns an user as an assoc array with the given username
+	function get_by_username($username) {
+		return $this->where("username='$username'")->get('assoc');
 	}
 	
 	/**

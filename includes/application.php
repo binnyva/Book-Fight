@@ -23,4 +23,3 @@ $top_users = $sql->getAll("SELECT COUNT(UserItem.id) as read_count, User.name, U
 									FROM User INNER JOIN `UserItem` ON User.id=UserItem.user_id
 									WHERE UserItem.status='1'
 									GROUP BY UserItem.user_id ORDER BY read_count DESC LIMIT 0,10");
-
