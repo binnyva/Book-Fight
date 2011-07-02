@@ -1,7 +1,7 @@
 <?php
 require('../common.php');
 $user_string = $sql->escape($_GET['users']);
-$usernames = explode('/', trim($user_string, '/\\ '));
+$usernames = explode('/', trim($user_string, '/\\ ')); // The trim will make sure there that urls like '/compare/binnyva/anjana/' is handled properly.
 
 $list_id = 1;
 $list_details = $list->get_list($list_id);
