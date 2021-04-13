@@ -7,8 +7,10 @@ if(isset($_SERVER["HTTP_HOST"])) $user = new User;
 function checkUser() {
 	global $config;
 	
-	if((!isset($_SESSION['user_id']) or !$_SESSION['user_id']))
-		showMessage("Please login to use this feature", $config['site_url'] . 'user/login.php', "error");
+	if((!isset($_SESSION['user_id']) or !$_SESSION['user_id'])) {
+		//showMessage("Please login to use this feature", $config['site_url'] . 'user/login.php', "error");
+		$_SESSION['user_id'] = 0;
+	}
 }
 
 if(isset($_SERVER["HTTP_HOST"])) {

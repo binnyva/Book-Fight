@@ -1,6 +1,12 @@
 var hover_timer = false;
+var books_read = {};
 
 function init() {
+	var books_read_json = $.cookie("books_read");
+	if(books_read_json) {
+		books_read = $.parseJSON(books_read_json);
+	}
+
 	$(".item-row").click(function(e) {
 		var checkbox = $(this).find("input.read");
 		if(!checkbox.length) return; // If there is no checkbox in it, never mind.
@@ -59,17 +65,21 @@ function markAsRead() {
 	var item_id = getId(this.id);
 	
 	if(status) $("#item-"+item_id+" .title").addClass("read");
-	else $("#item-"+item_id+" .title").removeClass("read")
+	else $("#item-"+item_id+" .title").removeClass("read");
 	
-	loading();
-	$.ajax({
-		"url": "ajax/done.php?ajax=1&item_id="+item_id+"&status="+status,
-		"success": function() {
-			loaded();
-		},
-		"error": function() {
-			loaded();
-			ajaxError();
-		}
-	});
+	if(user_id) {
+		loading();
+		$.ajax({
+			"url": "ajax/done.php?ajax=1&item_id="+item_id+"&status="+status,
+			"success": function() {
+				loaded();
+			},
+			"error": function() {
+				loaded();
+				ajaxError();
+			}
+		});
+	} else {
+		//$.cookie("books_read", );
+	}
 }

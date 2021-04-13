@@ -55,7 +55,11 @@ include($GLOBALS['template']->template);
 
 <div id="cover_preview"></div>
 
+<script type="text/javascript">
+var user_id = <?php echo $_SESSION["user_id"]; ?>;
+</script>
 <script src="<?php echo $abs?>js/library/jquery.min.js" type="text/javascript"></script>
+<script src="<?php echo $abs?>js/library/jquery.cookie.js" type="text/javascript"></script>
 <script src="<?php echo $abs?>js/application.js" type="text/javascript"></script>
 <?php echo $js_includes?>
 </body>
