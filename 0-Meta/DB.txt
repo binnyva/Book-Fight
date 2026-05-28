@@ -1,0 +1,13 @@
+ CREATE TABLE `Project_Bookfight`.`Author` (
+	`id` INT( 11 ) UNSIGNED NOT NULL AUTO_INCREMENT,
+	`name` VARCHAR( 200 ) NOT NULL ,
+	PRIMARY KEY ( `id` )
+) ENGINE = MYISAM;
+ALTER TABLE `Item` ADD `author_id` INT( 11 ) UNSIGNED NOT NULL AFTER `name` ;
+ALTER TABLE `Item` ADD INDEX ( `author_id` ) ;
+
+-----------
+
+ ALTER TABLE `Author` CHANGE `name` `name` VARCHAR( 200 ) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL  
+ 
+ 

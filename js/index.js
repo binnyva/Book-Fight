@@ -6,7 +6,6 @@ function init() {
 	if(books_read_json) {
 		books_read = $.parseJSON(books_read_json);
 	}
-
 	$(".item-row").click(function(e) {
 		var checkbox = $(this).find("input.read");
 		if(!checkbox.length) return; // If there is no checkbox in it, never mind.
